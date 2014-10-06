@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- PhoneGap Check - This MUST be the first script, all other scripts rely upon knowing which platform we're on-->
+    <script src="./js/checkplatform.js"></script>
+
+    <!-- Site Specific CSS -->
+    <script src="./js/loadSiteCSS.js"></script>
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--<link rel="stylesheet" href="./css/site.css" />-->
+    
+    <!-- Site-Specific Logic-->
+    <script src="./js/site.js"></script>
+
+    <!-- Cordova Methods-->
+    <script src="cordova.js"></script>
+       
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/defaults.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- SignalR-->
+    <script src="scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="signalr/hubs"></script>
+
+    <!-- Push notifications (App) -->
+    <script src="js/MobileServices.Web-1.1.3.min.js" ></script>
+    <script src="js/NotificationHub.js" ></script>
+     
+    <!-- Cordova Logic -->
+    <script src="scripts/index.js"></script>
+     
+    <!-- Main App Logic-->
+    <script src="./js/custom.js"></script>
+
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body id="body">
+    <div id="wire" data-role="page" data-add-back-btn="true" data-theme="a">
+        
+        <div data-role="header" data-position="fixed" class="site-header-bar" data-id="headerbar" id="headerbar">
+            <a href="#navPanel" data-icon="bars" data-corners="false" data-role="button" data-iconpos="notext"></a>
+
+            <h1>
+                <span id="sitetitle"></span>
+            </h1>
+
+            <div id="headerBar_Btns" class="ui-btn-right">
+                <span id="headerBar_wire" class="unread-message-count">
+                    <img src="graphics/wire_icon.gif" />
+                    <span id="hearderBar_wireCount"></span>
+                </span>
+                <span id="headerBar_mail" class="unread-message-count">
+                    <img src="graphics/mail_icon.gif" />
+                    <span id="hearderBar_mailCount"></span>
+                </span>
+                <span id="headerBar_mates" class="unread-message-count">
+                    <img src="graphics/friend_request_icon.gif" />
+                    <span id="hearderBar_matesCount"></span>
+                </span>
+            </div>
+
+        </div>
+
+        <div id="content" data-role="content" class="ui-page-theme-b content-text">
+            <div id="message_bars">
+                <div id="sitewide_message_bar" class="header-message-bar site-header-bar ui-bar" data-sitewidemessageguid="">
+                    <div class="header-message-bar-text" id="sitewide_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="sitewide_message_button_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hideSiteWideMessage();">Got it!</button></div>
+                </div>
+
+                <div id="mobile_message_bar" class="header-message-bar site-header-bar ui-bar" data-mobilemessageversion="">
+                    <div class="header-message-bar-text" id="mobile_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="mobile_message_button_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hideMobileMessage();">Got it!</button></div>
+                </div>
+
+                <div id="page_message_bar" class="header-message-bar site-header-bar ui-bar" data-pagemessageversion="">
+                    <div class="header-message-bar-text" id="page_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="page_message_button_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hidePageMessage('wire');">Got it!</button></div>
+                </div>
+            </div>
+            <!--<div id="pullrefresh">
+                <div class="message">
+                    <div id="pullrefresh-icon" class="icon arrow arrow-down"></div>
+                    <span></span>
+                </div>
+            </div>-->
+            <!--<a href="./newWirePost.html" data-rel="dialog" data-role="button" data-ajax="true">
+                New Post
+            </a>-->
+
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><a data-role="button" data-theme="a" href="#newWirePost" data-rel="popup" data-position-to="window">New Post</a></div>
+                <div class="ui-block-b"><button id="refresh_wire" type="button" data-theme="a" onclick="refreshWire()">Refresh</button></div>
+            </div>
+
+            <div id="wire_container">
+                <div id="wire_display" class="ui-page-theme-b content-text">
+                </div>
+            </div>
+
+            <!--<script>
+                var element = document.getElementById('wire_display');
+                var hammertime = Hammer(element).on("tap", function (event) {
+                    alert('hello!');
+                });
+
+            </script>-->
+
+            <button id="show_more_btn" type="button" data-theme="a">Show More</button>
+
+            <div id="wirePostHolder">
+            </div>
+
+        </div>
+
+        <div id="footer" class="footer">
+
+        </div>
+
+        <div id="sidebarContainer">
+            <div data-role="panel" id="navPanel" data-display="push">
+                <ul id="PanelNavButtons" data-role="listview" data-theme="c">
+                    <li id="sideBar1" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar2" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar3" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar4" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar5" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar6" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar7" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar8" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar9" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar10" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar11" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar12" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar13" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar14" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar15" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar16" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar17" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar18" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar19" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar20" data-icon="false" class="ui-screen-hidden"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

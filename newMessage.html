@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/defaults.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- jQuery Mobile 1.4.0 -->
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js"></script>-->
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/site.css" />
+
+    <script src="./js/custom.js"></script>
+    <script src="./js/site.js"></script>
+
+    <!--<script src="./Pages/Welcome.js"></script>-->
+
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body id="body">
+    <div data-role="dialog" id="newMessage" data-close-btn="none">
+
+        <div data-role="header">
+            <h1>New Message</h1>
+        </div>
+
+        <div data-role="content">
+            <label id="errorText" class="WelcomeTextLi"></label>
+            <ul data-role="listview" data-inset="true" data-icon="false" class="jqm-list WelcomeText">
+
+                <li id="NewPost">
+                    <input name="to_GUID" id="messageTo_GUID" type="hidden" value="">
+                    <div id="to_container">
+                        <label>To: </label>
+                        <span id="messageTo"></span>
+                    </div>
+                    <br />
+                    <label for="subject">Subject:</label>
+                    <input name="subject" id="messageSubject" type="text" value="" data-clear-btn="true" placeholder="Subject">
+                    <label for="messagecontent">Message:</label>
+                    <textarea name="messsagecontent" id="messagePostText" rows="1"></textarea>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a"><button onclick="sendMessage();">Send</button></div>
+                        <div class="ui-block-b"><a href="#" data-role="button" data-theme="a" onclick="history.go(-1);">Cancel</a></div>
+                    </div>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</body>
+</html>

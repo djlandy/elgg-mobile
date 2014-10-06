@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--<link rel="stylesheet" href="./css/site.css" />-->
+    <!-- PhoneGap Check -->
+    <script src="./js/checkplatform.js"></script>
+
+    <!-- Site Specific Code (Platform Dependant)-->
+    <script src="./js/loadSiteJS.js"></script>
+
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/defaults.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- Load All Other Scripts -->
+    <!-- SignalR-->
+    <script src="scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="signalr/hubs"></script>
+
+    <!-- Main App Logic-->
+    <script src="./js/custom.js"></script>
+     
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body id="body">
+    <div id="home" data-role="page" data-add-back-btn="true" data-theme="a">
+        <div data-role="header" data-position="fixed" class="site-header-bar" data-id="headerbar" id="headerbar">
+
+            <h1>
+                <span id="sitetitle"><span class="nakedtext">NAKED</span><span class="matestext">MATES</span></span>
+            </h1>
+            <a id="logout" class="ui-btn-right" data-icon="delete" href="./logout.aspx">Logout</a>
+            <div id="NavBarDiv" class="nav" data-role="navbar">
+                <ul id="NavButtons">
+                    <!--<li><a href="./" data-transition="slide">Home</a></li>-->
+                    <li><a href="./wire.html" data-transition="slide">Wire</a></li>
+                    <li><a href="./mail.html" data-transition="slide">Mail<span id="unreadMessageCount" class="unread-message-count"></span></a></li>
+                    <li><a href="./mates.html" data-transition="slide">Mates<span id="matesRequestCount" class="unread-message-count"></span></a></li>
+                    <li><a href="./gps.html" data-transition="slide">GPS</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="content" data-role="content">
+
+            <ul data-role="listview" data-inset="true" data-icon="false" class="jqm-list WelcomeText">
+                <li id="WelcomeText" class="WelcomeTextLi">
+                    It looks like you're not connected to the internet at the moment.  We suggest you get back online soon as there are lots of naked guys waiting to meet you!.
+                </li>
+            </ul>
+        </div>
+
+        <div id="footer" class="footer">
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

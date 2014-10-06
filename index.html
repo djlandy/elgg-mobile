@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="stylesheet" href="./css/elgg-mobile.css" />
+
+    <!-- PhoneGap Check - This MUST be the first script, all other scripts rely upon knowing which platform we're on-->
+    <!--<script src="./js/checkplatform.js"></script>-->
+    <!-- Site Specific CSS -->
+    <!--<script src="./js/loadSiteCSS.js"></script>-->
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--<link rel="stylesheet" href="./css/site.css" />-->
+    <!-- Cordova Methods-->
+    <script src="cordova.js"></script>
+
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!--<script src="./js/defaults.js"></script>-->
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- Push notifications (App) -->
+    <!--<script src="js/MobileServices.Web-1.1.3.min.js"></script>-->
+    <!--<script src="js/NotificationHub.js"></script>-->
+    <!-- Cordova Logic -->
+    <!--<script src="scripts/index.js"></script>-->
+    <!-- SignalR-->
+    <!--<script src="scripts/jquery.signalR-2.1.2.min.js"></script>-->
+    <!--<script src="signalr/hubs"></script>-->
+    <!-- Main App Logic-->
+    <!--<script src="./js/site.js"></script>-->
+    <!--<script src="./js/custom.js"></script>-->
+    <!-- Page-specific Scripts-->
+    <!--<script src="js/login.js"></script>-->
+    <script src="js/elgg-mobile.js"></script>
+
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+    <title>Elgg Mobile</title>
+</head>
+<body>
+    <div id="elggMobile-Setup" data-role="page" data-add-back-btn="false" data-theme="c" class="elggMobile-Text">
+        <!--<div data-role="header" data-position="fixed" class="site-header-bar" data-id="headerbar" id="headerbar">
+
+            <h1>
+                <span id="sitetitle"><span class="nakedtext">NAKED</span><span class="matestext">MATES</span></span>
+            </h1>
+
+        </div>-->
+
+        <div id="content" data-role="content" class="ui-page-theme-a">
+
+            <div id="welcomeMsg" class="elggMobile-Welcome">
+                Welcome to elgg mobile! <br />
+                <br />
+                There are two ways to connect this app to your elgg site - If your site administrator has registered your site with elgg mobile just enter the site’s name in the “Site Name” box below, if not enter the site’s URL in the “Site URL” box.
+            </div>
+            <div id="returnMsg" class="elggMoblie-Return">
+                Welcome back!<br />
+                <br />
+                Select one of your previously added sites from the list below or add a new one.
+            </div>
+            <div id="currentSiteList">
+                <ul id="currentSites" class="elggMobile-site-list" data-role="listview" data-inset="true" data-icon="false">
+                    <li id="site1" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r">
+                        <a href="javascript:selectSite(1);">
+                            <img id="site1Img" class="ui-li-icon" />
+                            <div id="site1Name">
+
+                            </div>
+                            <div id="site1Description">
+
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site2" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(2);">
+                            <img id="site2Img" class="ui-li-icon" />
+                            <div id="site2Name">
+
+                            </div>
+                            <div id="site2Description">
+
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site3" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(3);">
+                            <img id="site3Img" class="ui-li-icon" />
+                            <div id="site3Name">
+                            </div>
+                            <div id="site3Description">
+
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site4" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r">
+                        <a href="javascript:selectSite(4);">
+                            <img id="site4Img" class="ui-li-icon" />
+                            <div id="site4Name">
+
+                            </div>
+                            <div id="site4Description">
+
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site5" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(5);">
+                            <img id="site5Img" class="ui-li-icon" />
+                            <div id="site5Name">
+                            </div>
+                            <div id="site5Description">
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site6" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(6);">
+                            <img id="site6Img" class="ui-li-icon" />
+                            <div id="site6Name">
+                            </div>
+                            <div id="site6Description">
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site7" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(7);">
+                            <img id="site7Img" class="ui-li-icon" />
+                            <div id="site7Name">
+                            </div>
+                            <div id="site7Description">
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site8" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(8);">
+                            <img id="site8Img" class="ui-li-icon" />
+                            <div id="site8Name">
+                            </div>
+                            <div id="site8Description">
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site9" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(9);">
+                            <img id="site9Img" class="ui-li-icon" />
+                            <div id="site9name"></div>
+                            <div id="site9Description">
+                            </div>
+                        </a>
+                    </li>
+                    <li id="site10" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
+                        <a href="javascript:selectSite(10);">
+                            <img id="site10Img" class="ui-li-icon" />
+                            <div id="site10Name">
+                            </div>
+                            <div id="site10Description">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="mainContent">
+
+            </div>
+
+        </div>
+
+
+        <!--<script>
+            var element = document.getElementById('wire_display');
+            var hammertime = Hammer(element).on("tap", function (event) {
+                alert('hello!');
+            });
+
+        </script>-->
+
+
+
+    </div>
+
+    <div id="footer" class="footer">
+
+    </div>
+</body>
+</html>

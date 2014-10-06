@@ -1,0 +1,15 @@
+﻿
+var localHubsRequest = new XMLHttpRequest;
+
+var localHubsScript;
+
+var scriptURL;
+
+scriptURL = window.localStorage.getItem('ActiveSite-HubsJS');
+
+//alert(scriptURL);
+
+localHubsRequest.open('GET', scriptURL, false);
+localHubsRequest.send();
+localHubsScript = localHubsRequest.responseText;
+eval(localHubsScript);

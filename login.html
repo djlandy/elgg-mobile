@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- PhoneGap Check - This MUST be the first script, all other scripts rely upon knowing which platform we're on-->
+    <script src="./js/checkplatform.js"></script>
+
+    <!-- Site Specific CSS -->
+    <script src="./js/loadSiteCSS.js"></script>
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--<link rel="stylesheet" href="./css/site.css" />-->
+    <!-- Cordova Methods-->
+    <script src="cordova.js"></script>
+
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/defaults.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- Push notifications (App) -->
+    <!--<script src="js/MobileServices.Web-1.1.3.min.js"></script>-->
+    <!--<script src="js/NotificationHub.js"></script>-->
+    <!-- Cordova Logic -->
+    <!--<script src="scripts/index.js"></script>-->
+    <!-- SignalR-->
+    <!--<script src="scripts/jquery.signalR-2.1.2.min.js"></script>-->
+    <!--<script src="signalr/hubs"></script>-->
+    <!-- Main App Logic-->
+    <script src="./js/site.js"></script>
+    <script src="./js/custom.js"></script>
+
+    <!-- Page-specific Scripts-->
+    <script src="js/login.js"></script>
+
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body id="body">
+    <div id="app-login" data-role="page" data-add-back-btn="true" data-theme="a">
+        <!--Scripts here to allow AJAX load-->
+        <!-- PhoneGap Check - This MUST be the first script, all other scripts rely upon knowing which platform we're on-->
+        <script src="./js/checkplatform.js"></script>
+
+        <!-- Site Specific CSS -->
+        <script src="./js/loadSiteCSS.js"></script>
+
+        <link rel="stylesheet" href="./css/custom.css" />
+        <!--<link rel="stylesheet" href="./css/site.css" />-->
+        <!-- Cordova Methods-->
+        <!--<script src="cordova.js"></script>-->
+
+        <script src="./js/site.js"></script>
+        <!--<script src="./js/custom.js"></script>-->
+
+        <!-- Page-specific Scripts-->
+        <script src="js/login.js"></script>
+
+        <!-- end scripts -->
+
+        <div data-role="header" data-position="fixed" class="site-header-bar" data-id="headerbar" id="headerbar">
+
+            <h1>
+                <span id="sitetitle"></span>
+            </h1>
+            <!--<a id="logout" class="ui-btn-right" data-icon="delete" href="./logout.aspx">Logout</a>-->
+            <!--<div id="NavBarDiv" class="nav" data-role="navbar">
+                <ul id="NavButtons">
+
+                    <li><a href="./wire.html" data-transition="slide">Wire</a></li>
+                    <li><a href="./mail.html" data-transition="slide">Mail<span id="unreadMessageCount" class="unread-message-count"></span></a></li>
+                    <li><a href="./mates.html" data-transition="slide">Mates<span id="matesRequestCount" class="unread-message-count"></span></a></li>
+                    <li><a href="./gps.html" data-transition="slide">GPS</a></li>
+                </ul>
+            </div>-->
+
+        </div>
+        <div id="content" data-role="content">
+
+            <div id="logininform" class="loginform">
+                <div class="logintext"><span id="loginsitetitle"></span></div>
+
+                <form method="post" action="Logon.aspx" id="form1" data-ajax="false">
+                    <div class="aspNetHidden">
+                        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="1s3Wc031dsaqgh6TSYD6Rpy0tAue/qtp4o4y52iEx4dEIUOOfafl4ojzHuI4EMAwX4tO07yUmUyqc5YzliTM/P2e4nIW8W/xL34bVmChHzPlypigDX4XCcImM1Xi/e5EBBo8FIhmCtp4o88f/GVcIg==" />
+                    </div>
+
+                    <div class="aspNetHidden">
+
+                        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5A2128B1" />
+                        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="kakrRSPrAcz7fG86gAkC8NVqeKGxDw0CaWQMsvDhol44wSOAXbUJm+Q2PT/cgzr5CrjIjNFygkQ9IgZRhF787dmJPqwemUBzXsv3kZAR3h+fwaoUHp76qp+0LTrIHiMZG0sW7zdg1Z2z3j5/YYbn77H+ohjCvuzcv/U9Wv4+OuUpVNtADWlGsZhV57c7m6R/" />
+                    </div>
+                    <div id="errortext" class="errortext">
+                        <span id="Msg"></span>
+                    </div>
+                    <input name="username" type="text" id="username" placeholder="Username" />
+                    <input name="password" type="password" id="password" placeholder="Password" />
+
+                    <label>
+                        <input id="remember" type="checkbox" name="remember" />
+                        Remember Me
+                    </label>
+                    <input type="button" name="Submit1" value="Login" id="Submit1" onclick="appLoginSubmit()" />
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

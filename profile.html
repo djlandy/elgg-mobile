@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+
+    <meta content="minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- PhoneGap Check - This MUST be the first script, all other scripts rely upon knowing which platform we're on-->
+    <script src="./js/checkplatform.js"></script>
+
+    <!-- Site Specific CSS -->
+    <script src="./js/loadSiteCSS.js"></script>
+
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--<link rel="stylesheet" href="./css/site.css" />-->
+    <!-- Site-Specific Logic-->
+    <script src="./js/site.js"></script>
+
+    <!-- Cordova Methods-->
+    <script src="cordova.js"></script>
+
+    <!-- jQuery Mobile 1.3.2 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/defaults.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    <!-- SignalR-->
+    <script src="scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="signalr/hubs"></script>
+
+    <!-- Push notifications (App) -->
+    <script src="js/MobileServices.Web-1.1.3.min.js"></script>
+    <script src="js/NotificationHub.js"></script>
+
+    <!-- Cordova Logic -->
+    <script src="scripts/index.js"></script>
+
+    <!-- Main App Logic-->
+    <script src="./js/custom.js"></script>
+
+    <link rel="apple-touch-icon" sizes="158x158" href="./graphics/icon.png" />
+
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body id="body">
+    <div id="profile" data-role="page" data-add-back-btn="true" data-theme="a">
+
+        <div data-role="header" data-position="fixed" class="site-header-bar" data-id="headerbar" id="headerbar">
+            <a href="#navPanel" data-icon="bars" data-corners="false" data-role="button" data-iconpos="notext"></a>
+
+            <h1>
+                <span id="sitetitle"></span>
+            </h1>
+
+            <div id="headerBar_Btns" class="ui-btn-right">
+                <span id="headerBar_wire" class="unread-message-count">
+                    <img src="graphics/wire_icon.gif" />
+                    <span id="hearderBar_wireCount"></span>
+                </span>
+                <span id="headerBar_mail" class="unread-message-count">
+                    <img src="graphics/mail_icon.gif" />
+                    <span id="hearderBar_mailCount"></span>
+                </span>
+                <span id="headerBar_mates" class="unread-message-count">
+                    <img src="graphics/friend_request_icon.gif" />
+                    <span id="hearderBar_matesCount"></span>
+                </span>
+            </div>
+
+        </div>
+
+        <div id="content" data-role="content" class="profile-content">
+            <div id="message_bars">
+                <div id="sitewide_message_bar" class="header-message-bar site-header-bar ui-bar" data-sitewidemessageguid="">
+                    <div class="header-message-bar-text" id="sitewide_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="sitewide_message_bar_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hideSiteWideMessage();">Got it!</button></div>
+                </div>
+
+                <div id="mobile_message_bar" class="header-message-bar site-header-bar ui-bar" data-mobilemessageversion="">
+                    <div class="header-message-bar-text" id="mobile_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="mobile_message_bar_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hideMobileMessage();">Got it!</button></div>
+                </div>
+
+                <div id="page_message_bar" class="header-message-bar site-header-bar ui-bar" data-pagemessageversion="">
+                    <div class="header-message-bar-text" id="page_message_bar_text"></div>
+                    <div class="header-message-bar-button" id="page_message_button_container"><button data-role="button" data-iconpos="notext" data-icon="delete" data-inline="true" onclick="hidePageMessage('profile');">Got it!</button></div>
+                </div>
+            </div>
+            <div id="profile-header">
+                <span id="profile-name" class="main-profile-name"></span>
+                <br />
+                <br />
+                <span id="online"></span>
+                <a id="profile-picture-holder" href="#largeProfileImg" data-theme="a" data-rel="popup" data-position-to="window"><img id="profile-picture" class="main-profile-photo" /></a>
+
+                <span id="latest-status" class="latest-wire"></span>
+            </div>
+            <div id="profile-buttons">
+                <div id="profileBtnContainer">
+                    <!--<a id="reply_wire_btn" href="#sendMessage" data-theme="a" data-rel="popup" data-role="button" data-position-to="window">Reply</a>-->
+                </div>
+            </div>
+            <div id="profile-body" class="wire-post">
+                <ul data-role="listview" data-inset="true" data-icon="false">
+                    <li id="location-grid-li" class="profile-view-li">
+                    <div id="location-grid" class="ui-grid-a detail-item">
+
+                    <!--<div class="ui-block-a">Profile Type: <span class="location-detail" id="category"></span></div>-->
+                    <div id="detailItem1" class="ui-block-a detail-item">
+                    <span id="detailItem1Name" class="profile-detail"></span>
+                    <span id="detailItem1Detail" class="profile-detail"></span>
+                    </div>
+                    <div id="detailItem2" class="ui-block-b detail-item">
+                    <span id="detailItem2Name" class="profile-detail"></span>
+                    <span id="detailItem2Detail" class="profile-detail"></span>
+                    </div>
+                    <div id="detailItem1" class="ui-block-a detail-item">
+                    <span id="detailItem3Name" class="profile-detail"></span>
+                    <span id="detailItem3Detail" class="profile-detail"></span>
+                    </div>
+                    <div id="detailItem4" class="ui-block-b detail-item">
+                    <span id="detailItem4Name" class="profile-detail"></span>
+                    <span id="detailItem4Detail" class="profile-detail"></span>
+                    </div>
+
+                    </div>
+                    </li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-icon="false">
+                    <li id="stats-grid-li" class="profile-view-li">
+                        <div id="stats-grid" class="ui-grid-a detail-item">
+                            <div id="detailItem5" class="ui-block-a detail-item">
+                                <span id="detailItem5Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem5Detail"></span>
+                            </div>
+                            <div id="detailItem6" class="ui-block-b detail-item">
+                                <span id="detailItem6Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem6Detail"></span>
+                            </div>
+                            <div id="detailItem7" class="ui-block-a detail-item">
+                                <span id="detailItem7Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem7Detail"></span>
+                            </div>
+                            <div id="detailItem8" class="ui-block-b detail-item">
+                                <span id="detailItem8Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem8Detail"></span>
+                            </div>
+                            <div id="detailItem9" class="ui-block-a detail-item">
+                                <span id="detailItem9Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem9Detail"></span>
+                            </div>
+                            <div id="detailItem10" class="ui-block-b detail-item">
+                                <span id="detailItem10Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem10Detail"></span>
+                            </div>
+                            <div id="detailItem11" class="ui-block-a detail-item">
+                                <span id="detailItem11Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem11Detail"></span>
+                            </div>
+                            <div id="detailItem12" class="ui-block-b detail-item">
+                                <span id="detailItem12Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem12Detail"></span>
+                            </div>
+                            <div id="detailItem13" class="ui-block-a detail-item">
+                                <span id="detailItem13Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem13Detail"></span>
+                            </div>
+                            <div id="detailItem14" class="ui-block-b detail-item">
+                                <span id="detailItem14Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem14Detail"></span>
+                            </div>
+                            <div id="detailItem15" class="ui-block-a detail-item">
+                                <span id="detailItem15Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem15Detail"></span>
+                            </div>
+                            <div id="detailItem16" class="ui-block-b detail-item">
+                                <span id="detailItem16Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem16Detail"></span>
+                            </div>
+                            <div id="detailItem17" class="ui-block-a detail-item">
+                                <span id="detailItem17Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem17Detail"></span>
+                            </div>
+                            <div id="detailItem18" class="ui-block-b detail-item">
+                                <span id="detailItem18Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem18Detail"></span>
+                            </div>
+                            <div id="detailItem19" class="ui-block-a detail-item">
+                                <span id="detailItem19Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem19Detail"></span>
+                            </div>
+                            <div id="detailItem20" class="ui-block-b detail-item">
+                                <span id="detailItem20Name" class="stats-detail"></span>
+                                <span class="stats-detail" id="detailItem20Detail"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-icon="false">
+                    <li id="interests-li">
+                        <div id="interests">
+                            <span id="interests-header">Interests:</span>
+                            <br />
+                            <br />
+                            <span id="interests-content" class="profile-detail"></span>
+                        </div>
+                    </li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-icon="false">
+                    <li id="about-li">
+                        <div id="about">
+                            <span id="about-header">About:</span>
+                            <br />
+                            <br />
+                            <span id="about-content" class="profile-detail"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="largeProfileImg" data-role="popup" data-overlay-theme="a" class="jqm-modal-popup ui-content">
+                <a class="ui-btn-right" href="#" data-role="button" data-iconpos="notext" data-icon="delete" data-rel="back" data-theme="a">Close</a>
+                <img id="large-profile-pic" class="large-profile-pic" />
+            </div>
+            <div id="messagePopupHolder">
+
+            </div>
+        </div>
+        <div id="footer" class="footer">
+
+        </div>
+
+        <div id="sidebarContainer">
+            <div data-role="panel" id="navPanel" data-display="push">
+                <ul id="PanelNavButtons" data-role="listview" data-theme="c">
+                    <li id="sideBar1" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar2" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar3" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar4" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar5" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar6" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar7" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar8" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar9" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar10" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar11" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar12" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar13" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar14" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar15" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar16" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar17" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar18" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar19" data-icon="false" class="ui-screen-hidden"></li>
+                    <li id="sideBar20" data-icon="false" class="ui-screen-hidden"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

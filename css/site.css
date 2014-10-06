@@ -1,0 +1,30 @@
+﻿@font-face {
+    font-family: NMviper;
+    src: url(../graphics/viper.ttf) format('truetype');
+}
+
+.site-header-bar {
+    background: #333 !important;
+}
+
+#sitetitle {
+    font-size: 19px;
+}
+
+.nakedtext {
+    font-family: NMviper;
+    color: #FBAF17;
+    /*font: bold;*/
+}
+
+.matestext {
+    font-family: NMviper;
+    color: white;
+    /*font: bold;*/
+}
+
+.logintext {
+    font-family: NMviper;
+    font-size: 200%;
+    text-align: center;
+}

@@ -1,0 +1,29 @@
+﻿<div data-role="popup" id="newWirePost" data-overlay-theme="a" class="send-message-popup ui-content" data-dismissible="false">
+
+    <div data-role="header">
+        <h1>New Wire Post</h1>
+    </div>
+
+    <div data-role="content">
+        <label id="errorText" class="WelcomeTextLi"></label>
+        <ul data-role="listview" data-inset="true" data-icon="false" class="jqm-list WelcomeText">
+
+            <li id="NewPost">
+
+                <label for="wirepostcontent">Your post:</label>
+
+                <textarea maxlength="140" name="wirepostcontent" id="wirePostText" rows="1" oninput="CheckCharacters()"></textarea>
+
+                <div id="charactercount" class="character-count">Characters Remaining: <span id="characters_remaining">140</span></div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><button onclick="postWire()">Post</button></div>
+                    
+                    <div class="ui-block-b"><a href="#" data-role="button" data-theme="a" data-rel="back">Cancel</a></div>
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+</div>

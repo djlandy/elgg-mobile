@@ -1,0 +1,51 @@
+﻿<div id="upgradePopup" data-role="popup" data-overlay-theme="a" class="jqm-modal-popup ui-content">
+    Basic members can send up to 10 private messages per day and you've reached your maximum.<br />
+    <br />
+    To send more messages and get a whole load of other awesomeness, tap "Upgrade".<br />
+    <br />
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <a id="upgradelink" data-role="button">Upgrade</a>
+        </div>
+        <div class="ui-block-b">
+            <a href="#" data-role="button" data-theme="a" data-rel="back">Cancel</a>
+        </div>
+    </div>
+</div>
+
+<div id="successPopup" data-role="popup" data-overlay-theme="a" class="jqm-modal-popup ui-content">
+    Message sent to <span id="successUserName" style="display: inline"></span>
+</div>
+
+<div id="sendMessage" data-role="popup" data-overlay-theme="a" class="send-message-popup ui-content" data-dismissible="false">
+
+    <div data-role="header">
+        <h1>New Message</h1>
+    </div>
+
+    <div data-role="content">
+        <label id="errorText" class="WelcomeTextLi"></label>
+        <ul data-role="listview" data-inset="true" data-icon="false" class="jqm-list WelcomeText">
+
+            <li id="NewPost">
+                <input name="to_GUID" id="messageTo_GUID" type="hidden" value="">
+                <div id="to_container">
+                    <label>To: </label>
+                    <span id="messageTo"></span>
+                </div>
+                <br />
+                <label for="subject">Subject:</label>
+                <input name="subject" id="messageSubject" type="text" value="" data-clear-btn="true" placeholder="Subject">
+                <label for="messagecontent">Message:</label>
+                <textarea name="messsagecontent" id="messagePostText" rows="1"></textarea>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><button onclick="sendMessage();">Send</button></div>
+                    <div class="ui-block-b"><a href="#" data-role="button" data-theme="a" data-rel="back">Cancel</a></div>
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+</div>
