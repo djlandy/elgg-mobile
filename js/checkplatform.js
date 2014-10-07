@@ -4,13 +4,17 @@ var emulator = false;
 //var siteJS;
 //var siteCSS;
 
-window.onerror = function (msg, url, linenumber) {
-    var message;
+var debug = true;
 
-    message = String(msg);
-    //message = msg.toSource();
-    alert('API: ' + API + '\nError message: ' + message + '\nURL: ' + url + '\nLine Number: ' + linenumber);
-    return true;
+if (debug == true) {
+    window.onerror = function (msg, url, linenumber) {
+        var message;
+
+        message = String(msg);
+        //message = msg.toSource();
+        alert('API: ' + API + '\nError message: ' + message + '\nURL: ' + url + '\nLine Number: ' + linenumber);
+        return true;
+    }
 }
 
 if (document.location.protocol == "file:") {
