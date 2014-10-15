@@ -60,133 +60,256 @@
                 Welcome to elgg mobile! <br />
                 <br />
                 There are two ways to connect this app to your elgg site - If your site administrator has registered your site with elgg mobile just enter the site’s name in the “Site Name” box below, if not enter the site’s URL in the “Site URL” box.
+                <br />
+                <br />
+                <div id="elggMobile-Setup-AddSites" class="ui-grid-solo">
+                    <br />
+                    <div id="knowSite" class="ui-block-a">
+                        <label for="knownSiteInputName">Site Name:</label>
+                        <input name="knownSiteInputName" id="knownSiteInput" type="text" value="" data-clear-btn="true">
+                    </div>
+                    <div id="knowSite-AddBtn-li" class="ui-block-a">
+                        <button id="knownSite-AddBtn" onclick="addKnownSiteSetup();">Add Known Site</button>
+                    </div>
+                    <br />
+                    <div id="addSiteURL" class="ui-block-a">
+                        <label for="addSiteURLInputName">URL:</label>
+                        <input name="addSiteURLInputName" id="addSiteURLInput" type="text" value="" data-clear-btn="true">
+                    </div>
+                    <div id="addSiteURL-AddBtn-li" class="ui-block-a">
+                        <button id="addSiteURL-AddBtn" onclick="addSiteByURL();">Add Site URL</button>
+                    </div>
+                </div>
+
+                <!--<div id="welcomeButtonContainer" class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        Known Site Name:
+                    </div>
+                    <div class="ui-block-a">
+                        <input id="knownSiteInput" />
+                    </div>
+                    <div class="ui-block-a">
+                        <a href="#elggMobile-addPage" data-role="button">Add</a>
+                    </div>
+                </div>-->
             </div>
-            <div id="returnMsg" class="elggMoblie-Return">
+
+            <div id="returnMsg" class="elggMobile-Return">
                 Welcome back!<br />
                 <br />
                 Select one of your previously added sites from the list below or add a new one.
+                <br />
+
+                <div id="returnButtonContainer" class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a href="#elggMobile-addPage" data-role="button">Add</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <!--<a href="#elggMobile-editPage" data-role="button">Edit</a>-->
+                        <button id="editButton" onclick="enterEditMode()">Edit</button>
+                    </div>
+                </div>
+
+
+                <div id="currentSiteList">
+                    <ul id="currentSites" class="elggMobile-site-list" data-role="listview" data-inset="true" data-icon="false">
+                        <li id="site1" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site1Link" href="javascript:selectSite(1);">
+                                <img id="site1Img" class="ui-li-icon" />
+                                <div id="site1Name">
+
+                                </div>
+                                <div id="site1Description">
+
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site2" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site2Link" href="javascript:selectSite(2);">
+                                <img id="site2Img" class="ui-li-icon" />
+                                <div id="site2Name">
+
+                                </div>
+                                <div id="site2Description">
+
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site3" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site3Link" href="javascript:selectSite(3);">
+                                <img id="site3Img" class="ui-li-icon" />
+                                <div id="site3Name">
+                                </div>
+                                <div id="site3Description">
+
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site4" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site4Link" href="javascript:selectSite(4);">
+                                <img id="site4Img" class="ui-li-icon" />
+                                <div id="site4Name">
+
+                                </div>
+                                <div id="site4Description">
+
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site5" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site5Link" href="javascript:selectSite(5);">
+                                <img id="site5Img" class="ui-li-icon" />
+                                <div id="site5Name">
+                                </div>
+                                <div id="site5Description">
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site6" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site6Link" href="javascript:selectSite(6);">
+                                <img id="site6Img" class="ui-li-icon" />
+                                <div id="site6Name">
+                                </div>
+                                <div id="site6Description">
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site7" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site7Link" href="javascript:selectSite(7);">
+                                <img id="site7Img" class="ui-li-icon" />
+                                <div id="site7Name">
+                                </div>
+                                <div id="site7Description">
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site8" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site8Link" href="javascript:selectSite(8);">
+                                <img id="site8Img" class="ui-li-icon" />
+                                <div id="site8Name">
+                                </div>
+                                <div id="site8Description">
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site9" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site9Link" href="javascript:selectSite(9);">
+                                <img id="site9Img" class="ui-li-icon" />
+                                <div id="site9name"></div>
+                                <div id="site9Description">
+                                </div>
+                            </a>
+                        </li>
+                        <li id="site10" class="elggMobile-site-item ui-screen-hidden" data-icon="arrow-r">
+                            <a id="site10Link" href="javascript:selectSite(10);">
+                                <img id="site10Img" class="ui-li-icon" />
+                                <div id="site10Name">
+                                </div>
+                                <div id="site10Description">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div id="currentSiteList">
-                <ul id="currentSites" class="elggMobile-site-list" data-role="listview" data-inset="true" data-icon="false">
-                    <li id="site1" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r">
-                        <a href="javascript:selectSite(1);">
-                            <img id="site1Img" class="ui-li-icon" />
-                            <div id="site1Name">
-
-                            </div>
-                            <div id="site1Description">
-
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site2" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(2);">
-                            <img id="site2Img" class="ui-li-icon" />
-                            <div id="site2Name">
-
-                            </div>
-                            <div id="site2Description">
-
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site3" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(3);">
-                            <img id="site3Img" class="ui-li-icon" />
-                            <div id="site3Name">
-                            </div>
-                            <div id="site3Description">
-
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site4" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r">
-                        <a href="javascript:selectSite(4);">
-                            <img id="site4Img" class="ui-li-icon" />
-                            <div id="site4Name">
-
-                            </div>
-                            <div id="site4Description">
-
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site5" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(5);">
-                            <img id="site5Img" class="ui-li-icon" />
-                            <div id="site5Name">
-                            </div>
-                            <div id="site5Description">
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site6" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(6);">
-                            <img id="site6Img" class="ui-li-icon" />
-                            <div id="site6Name">
-                            </div>
-                            <div id="site6Description">
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site7" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(7);">
-                            <img id="site7Img" class="ui-li-icon" />
-                            <div id="site7Name">
-                            </div>
-                            <div id="site7Description">
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site8" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(8);">
-                            <img id="site8Img" class="ui-li-icon" />
-                            <div id="site8Name">
-                            </div>
-                            <div id="site8Description">
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site9" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(9);">
-                            <img id="site9Img" class="ui-li-icon" />
-                            <div id="site9name"></div>
-                            <div id="site9Description">
-                            </div>
-                        </a>
-                    </li>
-                    <li id="site10" class="elggMoblie-site-item ui-screen-hidden" data-icon="arrow-r" >
-                        <a href="javascript:selectSite(10);">
-                            <img id="site10Img" class="ui-li-icon" />
-                            <div id="site10Name">
-                            </div>
-                            <div id="site10Description">
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
             <div id="mainContent">
 
             </div>
 
         </div>
 
+        <div id="footer" class="footer">
 
-        <!--<script>
-            var element = document.getElementById('wire_display');
-            var hammertime = Hammer(element).on("tap", function (event) {
-                alert('hello!');
-            });
-
-        </script>-->
-
-
-
+        </div>
     </div>
 
-    <div id="footer" class="footer">
+
+    <div id="elggMobile-addPage" data-role="page" data-add-back-btn="true" data-theme="c" class="elggMobile-Text">
+        <div id="elggMobile-addPage-header" data-role="header" data-theme="c">
+            <h1>Add a site</h1>
+        </div>
+        <div id="elggMobile-addPage-content" data-role="content" class="ui-page-theme-a">
+            <br />
+            There are two ways to connect this app to your elgg site - If your site administrator has registered your site with elgg mobile just enter the site’s name in the “Site Name” box below, if not enter the site’s URL in the “Site URL” box.
+            <br />
+            <br />
+            <div id="elggMobile-addPage-AddSites" class="ui-grid-solo">
+                <br />
+                <div id="elggMobile-addPage-knownSite" class="ui-block-a">
+                    <label for="elggMobile-addPageknownSiteInputName">Site Name:</label>
+                    <input name="elggMobile-addPage-knownSiteInputName" id="elggMobile-addPage-knownSiteInput" type="text" value="" data-clear-btn="true">
+                </div>
+                <div id="elggMobile-addPage-knownSite-AddBtn-li" class="ui-block-a">
+                    <button id="knownSite-AddBtn" onclick="addKnownSiteAddPage();">Add Known Site</button>
+                </div>
+                <br />
+                <div id="elggMobile-addPage-addSiteURL" class="ui-block-a">
+                    <label for="elggMobile-addPage-addSiteURLInputName">URL:</label>
+                    <input name="elggMobile-addPage-addSiteURLInputName" id="elggMobile-addPage-addSiteURLInput" type="text" value="" data-clear-btn="true">
+                </div>
+                <div id="elggMobile-addPage-addSiteURL-AddBtn-li" class="ui-block-a">
+                    <button id="elggMobile-addPage-addSiteURL-AddBtn" onclick="addSiteByURL();">Add Site URL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="elggMobile-editPage" data-role="page" data-theme="c" data-add-back-btn="true" class="elggMobile-Text">
+        <div id="elggMobile-editPage-header" data-role="header" data-theme="c">
+            <!--<a href="javascript:elggMobileEditPageBack();" data-icon="back">Back</a>-->
+            <h1><span id="elggMobile-editPage-header-sitename" class="elggMobile-editPage-sitename-class"></span></h1>
+        </div>
+
+        <div id="elggMobile-editPage-content" data-role="content" data-add-back-btn="true" class="ui-page-theme-a">
+            <br />
+            <div id="editSiteList">
+                <ul id="editSite" class="" data-role="listview" data-inset="true" data-icon="false">
+                    <li id="editSite-Name" class="" data-icon="arrow-r" data-role="fieldcontain">
+                        <img id="editSiteImg1" class="ui-li-icon edit-site-list-icon" />
+                        <label for="siteNameInputName">Name:</label>
+                        <input name="siteNameInputName" id="siteNameInput" type="text" value="" data-clear-btn="true">
+                    </li>
+                    <li id="editSite-Description" class="" data-icon="arrow-r" data-role="fieldcontain">
+                        <img id="editSiteImg2" class="ui-li-icon edit-site-list-icon" />
+                        <label for="siteDescriptionInputName">Description:</label>
+                        <input name="siteDescriptionInputName" id="siteDescriptionInput" type="text" value="" data-clear-btn="true">
+                    </li>
+                    <li id="editSite-API" class="" data-icon="arrow-r" data-role="fieldcontain">
+                        <img id="editSiteImg3" class="ui-li-icon edit-site-list-icon" />
+                        <label for="siteAPIInputName">API:</label>
+                        <input name="siteAPIInputName" id="siteAPIInput" type="text" value="" data-clear-btn="true">
+                    </li>
+
+                </ul>
+                <br />
+                <div id="saveButtonContainer" class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <button id="elggMobileEditSiteSave">Save Changes</button>
+                    </div>
+                </div>
+                <div id="deleteButtonContainer" class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <a href="#elggMobile-deleteSite-popup" data-rel="popup" class="elggMobile-delete-button"
+                           data-role="button" data-position-to="window" data-add-back-btn="false">Delete Site</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="elggMobile-deleteSite-popup" data-role="popup" data-overlay-theme="a" data-dismissible="false" data-add-back-btn="false">
+            <!--<div data-role="header">
+                <h1>Delete <span id="elggmobile-deletesite-popup-sitename-header" class="elggMobile-editPage-sitename-class"></span>?</h1>
+            </div>-->
+            <p>This will delete <span id="elggMobile-deleteSite-popup-siteName-body" class="elggMobile-editPage-sitename-class"></span> are you sure?</p>
+            <div id="saveButtonContainer" class="ui-grid-a">
+                <div class="ui-block-a">
+                    <button id="elggMobile-deleteSite-popup-deleteBtn" class="elggMobile-delete-button" onclick="">Delete</button>
+                </div>
+                <div class="ui-block-b">
+                    <a id="elggMobile-deleteSite-popup-cancelBtn" href="#" data-role="button" data-rel="back">Cancel</a>
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>

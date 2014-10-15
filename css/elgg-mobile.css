@@ -2,7 +2,7 @@
     display: none;
 }
 
-.elggMoblie-Return {
+.elggMobile-Return {
     display: none;
 }
 
@@ -10,6 +10,11 @@
     display: none;
 }
 
-.elggMoblie-site-item {
+.elggMobile-site-item {
     display: none;
+    /*transition: all 0.5s all;*/
+}
+
+.elggMobile-delete-button {
+
 }

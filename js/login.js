@@ -17,9 +17,12 @@ function appLoginSubmit() {
     var userName;
     var password;
     var userKey;
+    var userGUID;
+    var siteName;
     var API;
 
-    API = window.localStorage.getItem('ActiveSite-API')
+    API = window.localStorage.getItem('ActiveSite-API');
+    siteName = window.localStorage.getItem('ActiveSite-LocalStorageKey');
 
     $.mobile.loading('show');
 
@@ -45,12 +48,14 @@ function appLoginSubmit() {
         success: function (xmlk) {
             //$.mobile.changePage("./wire.html");
             userKey = $(xmlk).find('UserToken').text();
+            userGUID = $(xmlk).find('UserGUID').text();
             //alert(userKey);
             if (userKey == undefined) {
                 userKey = '';
             }
 
             if (userKey != '') {
+                window.localStorage.setItem('ActiveSite-GUID', userGUID);
                 window.location.replace("./wire.html");
             }
             else {

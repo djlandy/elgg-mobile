@@ -1,13 +1,26 @@
 ﻿var defaultSite;
 var switchSite;
 var savedSites;
+var elggMobileAPI;
+
+elggMobileAPI = 'http://elgg-mobile.azurewebsites.net/api.aspx';
 
 $(document).on('pagebeforecreate', function (event) {
-    setTestDefaults();
 
+    //window.localStorage.clear();
+
+    //setTestDefaults();
+        
     defaultSite = window.localStorage.getItem('DefaultSite');
     switchSite = window.localStorage.getItem('SwitchSite');
     savedSites = window.localStorage.getItem('SavedSites');
+    
+    if (savedSites != null) {
+        savedSites = parseInt(savedSites);
+    }
+    else {
+        savedSites = 0;
+    }
 
     if (defaultSite != null && switchSite == 'N') {
         var SiteName;
@@ -181,6 +194,10 @@ function populateSavedSiteDetails() {
 
     }
 
+    for (i = sitesPlusOne; i < 11; i++){
+        $('#site' + i).addClass('ui-screen-hidden');
+    }
+
 
     $('#currentSites').listview('refresh');
 
@@ -201,6 +218,7 @@ function selectSite(site) {
     var Password;
     var Persist;
     var Description;
+    var LocalStorageKey;
 
     savedSite = window.localStorage.getItem('SavedSite-' + site);
     //alert(savedSite);
@@ -217,6 +235,7 @@ function selectSite(site) {
     UserName = window.localStorage.getItem(savedSite + '-UserName');
     Password = window.localStorage.getItem(savedSite + '-Password');
     Persist = window.localStorage.getItem(savedSite + '-Persist');
+    LocalStorageKey = window.localStorage.getItem(savedSite + '-LocalStorageKey');
 
     window.localStorage.setItem('ActiveSite-SiteName', SiteName);
     window.localStorage.setItem('ActiveSite-Description', Description);
@@ -230,12 +249,256 @@ function selectSite(site) {
     window.localStorage.setItem('ActiveSite-UserName', UserName);
     window.localStorage.setItem('ActiveSite-Password', Password);
     window.localStorage.setItem('ActiveSite-Persist', Persist);
+    window.localStorage.setItem('ActiveSite-LocalStorageKey', LocalStorageKey);
 
     //window.location.href = "./login.html";
     //the v1.4 way to do things
     //$(":mobile-pagecontainer").pagecontainer("load", "./login.html");
 
     //the v1.3 way
-    $.mobile.changePage('./login.html', { transition: "slide" } );
+    $.mobile.changePage('./login.html', { transition: "slide" });
 }
 
+
+function enterEditMode() {
+    $('.elggMobile-site-item').each(function () {
+        $(this).removeClass('ui-btn-up-c').addClass('ui-btn-up-b');
+        //$(this).switchClass('ui-btn-up-c', 'ui-btn-up-b', 1000);
+        //$(this).removeClass('ui-btn-down-c').addClass('ui-btn-down-b');
+        $(this).attr('data-theme', 'b');
+    });
+
+    $('#editButton').attr('onclick', 'exitEditMode()');
+    setSavedSiteLink('Y');
+
+}
+
+function exitEditMode() {
+    $('.elggMobile-site-item').each(function () {
+        $(this).removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
+        //$(this).removeClass('ui-btn-down-b').addClass('ui-btn-down-c');
+        $(this).attr('data-theme', 'c');
+    });
+    $('#editButton').attr('onclick', 'enterEditMode()');
+    setSavedSiteLink('N');
+}
+
+function editSite(siteIndex) {
+
+    var siteLocalStorageKey;
+    var siteIcon;
+    var siteName;
+    var siteDescription;
+    var siteSiteAPI;
+
+    siteLocalStorageKey = window.localStorage.getItem('SavedSite-' + siteIndex);
+    siteName = window.localStorage.getItem(siteLocalStorageKey + '-SiteName');
+    siteIcon = window.localStorage.getItem(siteLocalStorageKey + '-Icon');
+    siteDescription = window.localStorage.getItem(siteLocalStorageKey + '-Description');
+    siteSiteAPI = window.localStorage.getItem(siteLocalStorageKey + '-API');
+
+    //$('#elggMobile-editPage-header-sitename').html(siteName);
+    setEditPageSiteName(siteName);
+    $('#elggMobile-deleteSite-popup-deleteBtn').attr('onclick', 'elggMobileDeleteSite("' + siteLocalStorageKey + '",' + siteIndex + ');');
+
+    $('#siteNameInput').val(siteName);
+    $('#siteDescriptionInput').val(siteDescription);
+    $('#siteAPIInput').val(siteSiteAPI);
+
+
+    $('.edit-site-list-icon').each(function () {
+        $(this).attr('src', siteIcon);
+    });
+    //document.getElementById('editSiteImg1').src = siteIcon;
+    //document.getElementById('editSiteImg2').src = './graphics/elgg.ico';
+    //document.getElementById('editSiteImg3').src = './graphics/elgg.ico';
+
+    $('#elggMobileEditSiteSave').attr('onclick', 'editSiteSaveChanges("' + siteLocalStorageKey + '")');
+
+    $.mobile.changePage('#elggMobile-editPage', { transition: "slide" });
+    exitEditMode();
+
+}
+
+function setSavedSiteLink(setEdit) {
+    var linkToSet = 'selectSite(';
+
+    if (setEdit == 'Y') {
+        linkToSet = 'editSite(';
+    }
+
+    sitesPlusOne = parseInt(savedSites) + 1;
+
+    for (i = 1; i < sitesPlusOne ; i++) {
+
+        document.getElementById('site' + i + 'Link').href = 'javascript:' + linkToSet + i + ');';
+
+    }
+
+}
+
+function editSiteSaveChanges(siteKey) {
+    //alert(siteKey);
+    var savedSiteName;
+    var savedSiteDescription;
+    var savedSiteAPI;
+
+    savedSiteName = document.getElementById('siteNameInput').value;
+    savedSiteDescription = document.getElementById('siteDescriptionInput').value;
+    savedSiteAPI = document.getElementById('siteAPIInput').value;
+
+    window.localStorage.setItem(siteKey + '-SiteName', savedSiteName);
+    window.localStorage.setItem(siteKey + '-Description', savedSiteDescription);
+    window.localStorage.setItem(siteKey + '-API', savedSiteAPI);
+
+    setEditPageSiteName(savedSiteName);
+
+}
+
+function elggMobileEditPageBack() {
+    $.mobile.changePage('#elggMobile-Setup', { reverse: true, transition: "slide" });
+    //$('#siteNameInput').attr('value', '');
+    //$('#siteDescriptionInput').attr('value', '');
+    //$('#siteAPIInput').attr('value', '');
+}
+
+function setEditPageSiteName(siteName) {
+    $('.elggMobile-editPage-sitename-class').each(function () {
+        $(this).html(siteName);
+    });
+}
+
+function elggMobileDeleteSite(siteKey, siteIndex) {
+    //alert('Key: ' + siteKey + ' Index: ' + siteIndex);
+    var sitesPlusOne = parseInt(savedSites) + 1;
+    var currentItteration = 1;
+
+    window.localStorage.removeItem(siteKey + '-SiteName');
+    window.localStorage.removeItem(siteKey + '-Description');
+    window.localStorage.removeItem(siteKey + '-API');
+    window.localStorage.removeItem(siteKey + '-SiteJS');
+    window.localStorage.removeItem(siteKey + '-URL');
+    window.localStorage.removeItem(siteKey + '-SiteCSS');
+    window.localStorage.removeItem(siteKey + '-SignalR');
+    window.localStorage.removeItem(siteKey + '-HubsJS');
+    window.localStorage.removeItem(siteKey + '-GUID');
+    window.localStorage.removeItem(siteKey + '-UserName');
+    window.localStorage.removeItem(siteKey + '-Password');
+    window.localStorage.removeItem(siteKey + '-Persist');
+    window.localStorage.removeItem(siteKey + '-Icon');
+    window.localStorage.removeItem(siteKey + '-LocalStorageKey');
+
+
+    for (i = (siteIndex + 1) ; i < sitesPlusOne ; i++) {
+
+        var currentItterationKey;
+
+        currentItterationKey = window.localStorage.getItem('SavedSite-' + i);
+        window.localStorage.setItem('SavedSite-' + (i - 1), currentItterationKey);
+    };
+
+    window.localStorage.removeItem('SavedSite-' + savedSites);
+    savedSites = savedSites - 1;
+    window.localStorage.setItem('SavedSites', savedSites);
+    //$('#site' + i).addClass('ui-screen-hidden');
+    //document.getElementById('site' + i + 'Link').href = 'javascript:' + linkToSet + i + ');';
+
+    //$('#welcomeMsg').hide();
+    $('#returnMsg').hide();
+    $.mobile.changePage('#elggMobile-Setup', { reverse: true, transition: "slide" });
+}
+
+function addKnownSiteSetup() {
+    var knownSiteName;
+    knownSiteName = document.getElementById('knownSiteInput').value;
+    addKnownSite(knownSiteName);
+}
+
+function addKnownSiteAddPage() {
+    var knownSiteName;
+    knownSiteName = document.getElementById('elggMobile-addPage-knownSiteInput').value;
+    addKnownSite(knownSiteName);
+}
+
+function addKnownSite(knownSiteName) {
+    
+    var localStorageKey;
+    var siteName;
+    var description;
+    var api;
+    var siteJS;
+    var url;
+    var siteCSS;
+    var signalR;
+    var hubsJS;
+    var icon;
+
+
+
+    if (knownSiteName == '') {
+        alert('You need to enter a site name, silly');
+    }
+    else {
+        $.mobile.loading('show');
+        $.ajax({
+            type: "GET",
+            url: elggMobileAPI,
+            cache: false,
+            data: {
+                method: 'getknownsitedetails',
+                Site: knownSiteName
+            },
+            dataType: "xml",
+            success: function (xml) {
+               //logtext = (new XMLSerializer()).serializeToString(xml);
+               //console.log(logtext);
+               //error = $(xml).find('Error').text();
+               //console.log(error);
+                if ($(xml).find('Error').text() != '') {
+                    $.mobile.loading('hide');
+                    alert('Sorry, ' + knownSiteName + " isn't a known site, check with your site admin to make sure of the proper name to use");
+                }
+                else {
+                    localStorageKey = $(xml).find('LocalStorageKey').text();
+                    siteName = $(xml).find('SiteName').text();
+                    description = $(xml).find('Description').text();
+                    api = $(xml).find('API').text();
+                    siteJS = $(xml).find('SiteJS').text();
+                    url = $(xml).find('URL').text();
+                    siteCSS = $(xml).find('SiteCSS').text();
+                    signalR = $(xml).find('SignalR').text();
+                    hubsJS = $(xml).find('HubsJS').text();
+                    icon = $(xml).find('Icon').text();
+
+                    window.localStorage.setItem(localStorageKey + '-LocalStorageKey', localStorageKey);
+                    window.localStorage.setItem(localStorageKey + '-SiteName', siteName);
+                    window.localStorage.setItem(localStorageKey + '-Description', description);
+                    window.localStorage.setItem(localStorageKey + '-API', api);
+                    window.localStorage.setItem(localStorageKey + '-SiteJS', siteJS);
+                    window.localStorage.setItem(localStorageKey + '-URL', url);
+                    window.localStorage.setItem(localStorageKey + '-SiteCSS', siteCSS);
+                    window.localStorage.setItem(localStorageKey + '-SignalR', signalR);
+                    window.localStorage.setItem(localStorageKey + '-HubsJS', hubsJS);
+                    window.localStorage.setItem(localStorageKey + '-Icon', icon);
+
+                    savedSites = parseInt(savedSites) + 1;
+
+                    window.localStorage.setItem('SavedSites', savedSites);
+                    window.localStorage.setItem('SavedSite-' + savedSites, localStorageKey);
+
+                    $.mobile.loading('hide');
+                    $('#welcomeMsg').hide();
+                    
+                    $('#returnMsg').show();
+                    populateSavedSiteDetails();
+                    $('#currentSites').show();
+                    
+                }
+
+               
+            }
+        });
+    }
+
+
+}
