@@ -72,6 +72,7 @@ var app = {
             var pushNotification = window.plugins.pushNotification;
 
             // Platform-specific registrations.
+            alert('Platform: ' + device.platform);
             if (device.platform == 'android' || device.platform == 'Android') {
                 // Register with GCM for Android apps.
                 alert('Android');
