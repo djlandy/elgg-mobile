@@ -228,9 +228,9 @@ var app = {
 
                         //New Wire
                         hub.gcm.register(e.regid, ["NewWire"], "newWire", newWire).done(function () {
-                            //alert("Registered with hub!");
+                            alert("Registered with hub! (Wire)");
                         }).fail(function (error) {
-                            //alert("Failed registering with hub: " + error);
+                            alert("Failed registering with hub: " + error);
                         });
 
                         //New Mail
