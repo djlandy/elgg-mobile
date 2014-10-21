@@ -72,10 +72,10 @@ var app = {
             var pushNotification = window.plugins.pushNotification;
 
             // Platform-specific registrations.
-            alert('Platform: ' + device.platform);
+            //alert('Platform: ' + device.platform);
             if (device.platform == 'android' || device.platform == 'Android') {
                 // Register with GCM for Android apps.
-                alert('Android');
+                //alert('Android');
                 pushNotification.register(
                    app.successHandler, app.errorHandler,
                    {
@@ -229,9 +229,9 @@ var app = {
 
                         //New Wire
                         hub.gcm.register(e.regid, ["NewWire"], "newWire", newWire).done(function () {
-                            alert("Registered with hub! (Wire)");
+                            //alert("Registered with hub! (Wire)");
                         }).fail(function (error) {
-                            alert("Failed registering with hub: " + error);
+                            //alert("Failed registering with hub: " + error);
                         });
 
                         //New Mail
