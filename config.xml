@@ -12,6 +12,7 @@
   <author href="http://cordova.io" email="dev@cordova.apache.org">
     Apache Cordova Team
   </author>
+  <icon src="icon.png" />
   <!-- <icon src="ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
   <icon src="mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
   <icon src="hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
