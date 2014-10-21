@@ -61,7 +61,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        alert('Device Ready');
+        //alert('Device Ready');
         // Define the Mobile Services client.
         mobileClient = new WindowsAzure.MobileServiceClient(MOBILE_SERVICE_URL, MOBILE_SERVICE_APP_KEY);
         //todoItemTable = mobileClient.getTable('TodoItem');
