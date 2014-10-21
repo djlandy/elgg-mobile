@@ -61,7 +61,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        //alert('Device Ready');
+        alert('Device Ready');
         // Define the Mobile Services client.
         mobileClient = new WindowsAzure.MobileServiceClient(MOBILE_SERVICE_URL, MOBILE_SERVICE_APP_KEY);
         //todoItemTable = mobileClient.getTable('TodoItem');
@@ -74,7 +74,7 @@ var app = {
             // Platform-specific registrations.
             if (device.platform == 'android' || device.platform == 'Android') {
                 // Register with GCM for Android apps.
-                //alert('Android');
+                alert('Android');
                 pushNotification.register(
                    app.successHandler, app.errorHandler,
                    {
@@ -127,46 +127,46 @@ var app = {
             //    }, handleError);
             //}
 
-            function handleError(error) {
-                var text = error + (error.request ? ' - ' + error.request.status : '');
-                $('#errorlog').append($('<li>').text(text));
-            }
+            //function handleError(error) {
+            //    var text = error + (error.request ? ' - ' + error.request.status : '');
+            //    $('#errorlog').append($('<li>').text(text));
+            //}
 
-            function getTodoItemId(formElement) {
-                return $(formElement).closest('li').attr('data-todoitem-id');
-            }
+            //function getTodoItemId(formElement) {
+            //    return $(formElement).closest('li').attr('data-todoitem-id');
+            //}
 
             // Handle insert
-            $('#add-item').submit(function (evt) {
-                var textbox = $('#new-item-text'),
-                    itemText = textbox.val();
-                if (itemText !== '') {
-                    todoItemTable.insert({ text: itemText, complete: false }).then(refreshTodoItems, handleError);
-                }
-                textbox.val('').focus();
-                evt.preventDefault();
-            });
+            //$('#add-item').submit(function (evt) {
+            //    var textbox = $('#new-item-text'),
+            //        itemText = textbox.val();
+            //    if (itemText !== '') {
+            //        todoItemTable.insert({ text: itemText, complete: false }).then(refreshTodoItems, handleError);
+            //    }
+            //    textbox.val('').focus();
+            //    evt.preventDefault();
+            //});
 
-            $('#refresh').click(function (evt) {
-                refreshTodoItems();
-                evt.preventDefault();
-            });
+            //$('#refresh').click(function (evt) {
+            //    refreshTodoItems();
+            //    evt.preventDefault();
+            //});
 
             // Handle update
-            $(document.body).on('change', '.item-text', function () {
-                var newText = $(this).val();
-                todoItemTable.update({ id: getTodoItemId(this), text: newText }).then(null, handleError);
-            });
+            //$(document.body).on('change', '.item-text', function () {
+            //    var newText = $(this).val();
+            //    todoItemTable.update({ id: getTodoItemId(this), text: newText }).then(null, handleError);
+            //});
 
-            $(document.body).on('change', '.item-complete', function () {
-                var isComplete = $(this).prop('checked');
-                todoItemTable.update({ id: getTodoItemId(this), complete: isComplete }).then(refreshTodoItems, handleError);
-            });
+            //$(document.body).on('change', '.item-complete', function () {
+            //    var isComplete = $(this).prop('checked');
+            //    todoItemTable.update({ id: getTodoItemId(this), complete: isComplete }).then(refreshTodoItems, handleError);
+            //});
 
-            // Handle delete
-            $(document.body).on('click', '.item-delete', function () {
-                todoItemTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
-            });
+            //// Handle delete
+            //$(document.body).on('click', '.item-delete', function () {
+            //    todoItemTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
+            //});
 
             // On initial load, start by fetching the current data
             //refreshTodoItems();
@@ -220,11 +220,11 @@ var app = {
 
 
                         //Default Template
-                        hub.gcm.register(e.regid, null, "myTemplate", template).done(function () {
-                            //alert("Registered with hub!");
-                        }).fail(function (error) {
-                            //alert("Failed registering with hub: " + error);
-                        });
+                        //hub.gcm.register(e.regid, null, "myTemplate", template).done(function () {
+                        //    //alert("Registered with hub!");
+                        //}).fail(function (error) {
+                        //    //alert("Failed registering with hub: " + error);
+                        //});
 
                         //New Wire
                         hub.gcm.register(e.regid, ["NewWire"], "newWire", newWire).done(function () {
@@ -238,7 +238,7 @@ var app = {
                             //alert("Registered with hub!");
                             //alert('Tag Registration');
                         }).fail(function (error) {
-                            alert('Failed Tag Registration: ' + error);
+                            //alert('Failed Tag Registration: ' + error);
                             //alert("Failed registering with hub: " + error);
                         });
 
