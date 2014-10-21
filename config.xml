@@ -12,6 +12,10 @@
   <author href="http://cordova.io" email="dev@cordova.apache.org">
     Apache Cordova Team
   </author>
+  <icon src="ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
+  <icon src="mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+  <icon src="hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+  <icon src="xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
   <content src="index.html" />
   <access origin="*" />
   <preference name="SplashScreen" value="screen" />
