@@ -23,5 +23,5 @@
   <vs:platformSpecificValues>
     <vs:platformSpecificWidget platformName="windows8" />
   </vs:platformSpecificValues>
-  <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
+  <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" /><gap:plugin name="com.msopentech.azure-mobile-services"/>
 </widget>
